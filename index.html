@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小組長 1-on-1 關懷 Play Book · The Hope</title>
+<style>
+  :root {
+    --primary: #1D292E;
+    --accent: #FFCC32;
+    --accent-light: #FFF8D6;
+    --bg: #F7F5F0;
+    --card: #FFFFFF;
+    --border: #E2DDD5;
+    --text: #1D292E;
+    --muted: #6B7070;
+    --tip-bg: #FFFBEB;
+    --tip-border: #FFCC32;
+    --script-bg: #F0F4F3;
+    --r: 12px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--primary);
+    color: white;
+    padding: 44px 24px 36px;
+    text-align: center;
+  }
+  .header-tag {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .header p { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  /* ── FLOW BAR ── */
+  .flow-bar {
+    background: var(--accent);
+    padding: 13px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .flow-step {
+    background: rgba(29,41,46,0.12);
+    border-radius: 20px;
+    padding: 4px 13px;
+    white-space: nowrap;
+  }
+  .flow-arrow { opacity: 0.45; font-size: 14px; }
+
+  /* ── QUICK LINKS ── */
+  .quick-links {
+    background: #16222A;
+    padding: 14px 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .ql-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    text-decoration: none;
+    padding: 9px 17px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.13);
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  .ql-btn:hover { background: rgba(255,204,50,0.18); border-color: rgba(255,204,50,0.4); }
+  .ql-icon { width: 15px; height: 15px; flex-shrink: 0; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 680px; margin: 0 auto; padding: 28px 16px 72px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 32px; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-left: 2px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border-radius: var(--r);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .card-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .card p { margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ── LISTS ── */
+  .dot-list { list-style: none; padding: 0; }
+  .dot-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 14.5px;
+  }
+  .dot-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    left: 2px; top: 13px;
+  }
+
+  /* ── STEPS ── */
+  .step-list { list-style: none; padding: 0; }
+  .step-item { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+  .step-item:last-child { margin-bottom: 0; }
+  .step-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--accent);
+    font-size: 13px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-body { flex: 1; }
+  .step-body strong { font-size: 14.5px; display: block; margin-bottom: 4px; }
+  .step-body p { font-size: 13.5px; color: var(--muted); margin: 0; }
+
+  /* ── LINK BUTTON ── */
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--accent-light);
+    color: var(--primary);
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 13px; font-weight: 700;
+    margin-top: 10px;
+    border: 1.5px solid #E8C400;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  .link-btn:hover { background: var(--accent); }
+  .link-btn .ql-icon { stroke: #92701A; }
+
+  /* ── AUTO TAG ── */
+  .auto-tag {
+    display: inline-block;
+    background: #E6F4EA;
+    color: #2E7D32;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── AUTO ITEMS ── */
+  .auto-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .auto-item:last-child { border-bottom: none; }
+  .auto-icon-wrap {
+    width: 32px; height: 32px;
+    background: var(--accent-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .auto-icon-wrap .ql-icon { stroke: #92701A; }
+  .auto-item p { margin: 0; }
+  .auto-item small { color: var(--muted); font-size: 12px; display: block; margin-top: 2px; }
+
+  /* ── TOPIC BLOCK ── */
+  .topic-block {
+    background: var(--card);
+    border-radius: var(--r);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+  .topic-header {
+    background: var(--primary);
+    color: white;
+    padding: 14px 20px;
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .topic-badge {
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 11px; font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
+  .topic-body { padding: 20px; }
+
+  /* ── SCRIPT ── */
+  .script {
+    background: var(--script-bg);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin: 10px 0;
+    font-size: 14px; line-height: 1.8;
+    color: #2A3D42;
+    font-style: italic;
+  }
+  .script-note {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 8px 0 2px;
+    font-style: normal;
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: var(--tip-bg);
+    border: 1.5px solid var(--tip-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 14px;
+  }
+  .tip-label {
+    font-size: 10.5px; font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #8A6A00;
+    margin-bottom: 8px;
+  }
+  .tip-box ul { list-style: none; padding: 0; }
+  .tip-box ul li {
+    font-size: 13.5px;
+    padding: 3px 0 3px 16px;
+    position: relative;
+    color: var(--text);
+  }
+  .tip-box ul li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    font-weight: 700;
+    color: #CCA800;
+  }
+
+  /* ── DEEP QUESTIONS ── */
+  .deep-q { margin: 14px 0; }
+  .deep-q-label {
+    font-size: 11.5px; font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .deep-q ul { list-style: none; padding: 0; }
+  .deep-q ul li {
+    background: #F8F7F4;
+    border-radius: 8px;
+    padding: 9px 14px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-style: italic;
+    color: #3A4A50;
+    border-left: 3px solid #D0C8B8;
+  }
+
+  /* ── RESOURCES ── */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .resource-pill {
+    background: #F0F4F3;
+    border: 1.5px solid #C8D6D3;
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+  }
+
+  /* ── RECORD TABLE ── */
+  .record-wrap { overflow-x: auto; margin-top: 16px; border-radius: 8px; }
+  .record-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .record-table th {
+    background: var(--primary);
+    color: var(--accent);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px; font-weight: 700;
+  }
+  .record-table th:first-child { border-radius: 8px 0 0 0; }
+  .record-table th:last-child { border-radius: 0 8px 0 0; }
+  .record-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    vertical-align: top;
+  }
+  .record-table tr:nth-child(even) td { background: #FAFAF8; }
+  .record-table tr:last-child td { border-bottom: none; }
+  .record-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+
+  /* ── FOLLOWUP ROWS ── */
+  .followup-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .followup-row:last-child { border-bottom: none; }
+  .followup-trigger { flex: 1; color: var(--text); }
+  .followup-when {
+    flex-shrink: 0;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 12px; font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  /* ── ALERT ── */
+  .alert {
+    background: #FFF3F3;
+    border: 1.5px solid #FFBABA;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #7A2020;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 480px) {
+    .header h1 { font-size: 22px; }
+    .flow-bar { gap: 6px; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .followup-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-tag">The Hope · Online Campus</div>
+  <h1>小組長 1-on-1 關懷</h1>
+  <p>服事夥伴 Play Book &nbsp;·&nbsp; 適用對象：線上分部全職服事夥伴</p>
+</div>
+
+<!-- ── FLOW BAR ── -->
+<div class="flow-bar">
+  <span class="flow-step">預約系統</span>
+  <span class="flow-arrow">›</span>
+  <span class="flow-step">通話前準備</span>
+  <span class="flow-arrow">›</span>
+  <span class="flow-step">四大主題對話</span>
+  <span class="flow-arrow">›</span>
+  <span class="flow-step">禱告 · 道別</span>
+  <span class="flow-arrow">›</span>
+  <span class="flow-step">紀錄 · 後續</span>
+</div>
+
+<!-- ── QUICK LINKS ── -->
+<div class="quick-links">
+  <a class="ql-btn" href="https://script.google.com/macros/s/AKfycbz05UT8nnsA3IaivUeMgW2Kxpso2L29VFngJHC7SROZzjAZTbhi2b5UqkE9TuFdolSq/exec" target="_blank">
+    <svg class="ql-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    預約系統
+  </a>
+  <a class="ql-btn" href="https://script.google.com/macros/s/AKfycbzN-0YxnY8VlmcOXvnBNMeF6hXdtn_kr-Sz2PrGRoB8AkZebsxASKaYlJ2v3lBLPJa9/exec" target="_blank">
+    <svg class="ql-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    小組查詢系統
+  </a>
+  <a class="ql-btn" href="https://docs.google.com/spreadsheets/d/1hSJ6siI9c5flfAKlxEJ0S38C57t-gLw_WQ-A8d5K8mc/edit?gid=1294683053#gid=1294683053" target="_blank">
+    <svg class="ql-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    1-on-1 紀錄 Sheet
+  </a>
+</div>
+
+<!-- ── MAIN ── -->
+<div class="container">
+
+  <!-- 服事核心 -->
+  <div class="section">
+    <div class="section-label">服事核心</div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>Why — 為什麼要做這個服事？</div>
+      <p>小組長是線上分部教會生活的核心支柱。他們每週帶著一群人相聚，在彼此的生命裡留下印記。但這件事本身就很消耗——要帶人、要準備、要面對不出席的成員、要在自己狀態不好的時候繼續付出。</p>
+      <p>我們做這個服事，是要讓每一位小組長知道：<strong>有人看見你正在做的事，有人關心你怎麼了。</strong>不是調查，不是績效評估，是真實的同行。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>Focus & Goal — 焦點與目標</div>
+      <ul class="dot-list">
+        <li>讓組長感受到被支持、被看見，而不是被考核</li>
+        <li>創造一個安全的空間，讓組長可以說真話</li>
+        <li>了解每一位組長目前帶領的現況，幫助我們更好地在對的時間給到對的資源</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>Wins — 期待看到的結果</div>
+      <ul class="dot-list">
+        <li>組長感受到教會真的關心他，不只在意「你的組有幾人」</li>
+        <li>組長願意分享真實的挑戰，而不是給我們「正確答案」</li>
+        <li>我們對每位組長的現況有更清楚的圖像，能在合適的時間點給到適當的關懷與資源</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 預約系統 -->
+  <div class="section">
+    <div class="section-label">預約系統使用說明</div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>組長預約入口</div>
+      <p>把這個連結分享給組長，讓他們自行挑選你有空的時段（每次 60 分鐘）。</p>
+      <a class="link-btn" href="https://script.google.com/macros/s/AKfycbz05UT8nnsA3IaivUeMgW2Kxpso2L29VFngJHC7SROZzjAZTbhi2b5UqkE9TuFdolSq/exec" target="_blank">
+        <svg class="ql-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        開啟預約系統
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>Staff：如何開放可預約時段</div>
+      <ol class="step-list">
+        <li class="step-item">
+          <span class="step-num">1</span>
+          <div class="step-body"><strong>打開 Google Calendar</strong></div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <strong>新增「姓名-服事」事件</strong>
+            <p>在你有空做 1-on-1 的時段，新增一個事件，標題命名為「<strong>姓名-服事</strong>」——系統靠這個關鍵字識別你的可用時段</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">3</span>
+          <div class="step-body"><strong>重複加入想開放的時段</strong></div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">4</span>
+          <div class="step-body">
+            <strong>完成</strong>
+            <p>系統自動掃描「服事」事件，切成一小時時段顯示給組長選擇</p>
+          </div>
+        </li>
+      </ol>
+      <div class="tip-box">
+        <div class="tip-label">注意</div>
+        <ul>
+          <li>系統只顯示 24 小時後的時段，最多掃描未來 14 天</li>
+          <li>建議每週固定檢查一次 Calendar，確保接下來幾週都有開放時段</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>組長預約後，系統會自動...<span class="auto-tag">AUTO</span></div>
+      <div class="auto-item">
+        <div class="auto-icon-wrap">
+          <svg class="ql-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <p>在 Google Calendar 建立帶有 Google Meet 連結的事件，並寄邀請給你和組長</p>
+      </div>
+      <div class="auto-item">
+        <div class="auto-icon-wrap">
+          <svg class="ql-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <p>寄確認信給組長<small>含 Google Meet 連結與取消連結</small></p>
+      </div>
+      <div class="auto-item">
+        <div class="auto-icon-wrap">
+          <svg class="ql-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <p>寄通知信給你<small>包含組長預先填寫的 4 題牧養背景，見下一段「通話前準備」</small></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通話前準備 -->
+  <div class="section">
+    <div class="section-label">通話前準備</div>
+    <div class="card">
+      <p style="margin-bottom:18px;">收到預約通知信後，請做以下三件事：</p>
+      <ol class="step-list">
+        <li class="step-item">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <strong>讀組長填的 4 題答案</strong>
+            <p>通知信裡有組長預填的分享——這是最重要的準備素材：</p>
+            <ul class="dot-list" style="margin-top:8px;">
+              <li>牧養過程中，讓你最滿足的一件事</li>
+              <li>牧養過程中，讓你最挑戰的一件事</li>
+              <li>這次想和服事夥伴聊的原因</li>
+              <li>其他想分享的</li>
+            </ul>
+            <div class="tip-box" style="margin-top:10px;">
+              <div class="tip-label">重要</div>
+              <ul>
+                <li>讀完後，通話裡<strong>不需要重複問這些問題</strong>——你已經知道了</li>
+                <li>直接從這些答案切入，讓組長感受到你有認真看他寫的東西</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <strong>查一下這位組長的小組</strong>
+            <p>了解地區、大約幾位組員。有個基本印象就夠了。</p>
+            <a class="link-btn" href="https://script.google.com/macros/s/AKfycbzN-0YxnY8VlmcOXvnBNMeF6hXdtn_kr-Sz2PrGRoB8AkZebsxASKaYlJ2v3lBLPJa9/exec" target="_blank">
+              <svg class="ql-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              小組查詢系統
+            </a>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <strong>為這次通話禱告</strong>
+            <p>求神給你柔軟的心和開放的耳，能真的「聽見」組長在說什麼。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- HOW -->
+  <div class="section">
+    <div class="section-label">How — 對話流程</div>
+
+    <!-- 開場 -->
+    <div class="topic-block">
+      <div class="topic-header">開場與通話目的</div>
+      <div class="topic-body">
+        <div class="script">「[組長名字] 你好！我是 The Hope 線上分部的 [你的名字]。很高興終於能和你聊聊！這次約你，主要是想多了解你現在帶領小組的狀況，也想聽聽你這段時間的感受——就是一個輕鬆的對話，沒有什麼標準答案。你現在方便開始嗎？」</div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>語氣要像朋友打電話，不要像 HR 面談</li>
+            <li>主動讓組長知道「這不是考核」，降低防衛心</li>
+            <li>不要急著進主題，先讓對方適應通話節奏（可以先問「你現在在哪裡打電話呢？」之類的暖場）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主題一 -->
+    <div class="topic-block">
+      <div class="topic-header">
+        <span class="topic-badge">主題一</span>小組現況
+      </div>
+      <div class="topic-body">
+        <div class="script">「先聊聊你的小組——現在幾個人？最近大家狀態怎麼樣？」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「這段時間出席的穩定嗎？有沒有誰比較少出現？」</li>
+            <li>「整體感覺，這個小組目前的氛圍是什麼樣子？」</li>
+            <li>「有沒有新朋友最近加入，或是有人比較遊離的？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>如果組長說「出席很不穩定」或「有人一直請假」，不要急著給解方</li>
+            <li>先問：「你自己對這件事有什麼感受？」讓他先說完</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主題二 -->
+    <div class="topic-block">
+      <div class="topic-header">
+        <span class="topic-badge">主題二</span>組長個人狀態
+      </div>
+      <div class="topic-body">
+        <div class="script">「聊完小組，我也想了解你自己——這段時間帶領下來，你的狀態怎麼樣？」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「有沒有哪段時間特別累，或是特別有動力？」</li>
+            <li>「你自己跟神的關係，這陣子感覺如何？」</li>
+            <li>「除了小組，生活其他面向（工作、家庭）最近怎麼了？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>組長可能說「還好、還不錯」，不要就此帶過</li>
+            <li>可以溫柔地追問：「『還好』是指哪個方向的還好？」讓他能更具體說出來</li>
+            <li>如果他透露出明顯的疲憊或困難，要認真停下來回應，不要趕時間跳到下一個主題</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主題三 -->
+    <div class="topic-block">
+      <div class="topic-header">
+        <span class="topic-badge">主題三</span>牧養挑戰
+      </div>
+      <div class="topic-body">
+        <div class="script">「你之前有提到 [從 4 題答案裡拿到的內容]，我想多聽你說說——那個情況現在怎麼樣了？」</div>
+        <p class="script-note">如果 4 題答案裡沒有明確挑戰，改用：</p>
+        <div class="script">「帶領小組這件事，有沒有什麼是你覺得特別難的？」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「這個挑戰你一個人面對，還是有其他人一起承擔？」</li>
+            <li>「你有沒有試過什麼方法？效果怎麼樣？」</li>
+            <li>「如果有一樣東西可以改變，你希望是什麼？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>組長分享挑戰時，第一個反應很重要——先說「謝謝你告訴我這個」或「我聽到了，這真的不容易」</li>
+            <li>讓他感受到被理解，再說你的想法</li>
+            <li>如果他談到難帶的組員，不要進入「你應該這樣處理」的模式；先問：「你自己對這個人有什麼感受？」</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主題四 -->
+    <div class="topic-block">
+      <div class="topic-header">
+        <span class="topic-badge">主題四</span>下一步資源 / 裝備
+      </div>
+      <div class="topic-body">
+        <div class="script">「聽你說了這麼多，我想問問——現在有什麼是你覺得自己需要，或是教會可以幫助到你的？不管是課程、連結、還是某種支持都可以說。」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「有沒有哪個主題是你這段時間特別想學或想深化的？」</li>
+            <li>「你希望跟其他小組長有更多的連結嗎？」</li>
+            <li>「如果可以的話，你希望牧者在這個階段幫你做什麼？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>不要一次給太多選項，讓組長感到混亂或有壓力</li>
+            <li>根據他說的內容，提供最適合的一個方向</li>
+            <li>資源不需要馬上給答案，可以說「我記下來，之後確認了再跟你說」</li>
+          </ul>
+        </div>
+        <div style="margin-top:16px;">
+          <div class="deep-q-label">常見可提供的資源</div>
+          <div class="resource-grid">
+            <div class="resource-pill">小組長聚集</div>
+            <div class="resource-pill">牧養大哉問</div>
+            <div class="resource-pill">門徒的旅程課程</div>
+            <div class="resource-pill">James / 牧者一對一</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 禱告 -->
+    <div class="topic-block">
+      <div class="topic-header">禱告</div>
+      <div class="topic-body">
+        <div class="script">「分享了這麼多，謝謝你！在結束前，我想為你禱告——你現在最想讓我為你禱告什麼？」</div>
+        <p style="font-size:13.5px;margin:10px 0 4px;">如果對方願意分享，可以記錄下來，確保禱告有針對性。</p>
+        <div class="tip-box">
+          <div class="tip-label">禱告時的重點</div>
+          <ul>
+            <li>先感謝神，為組長願意帶領這個小組</li>
+            <li>為他說的挑戰和需要代禱，具體說出他分享的內容</li>
+            <li>禱告內容要以「安慰、造就、勸勉」為主，不給指示性的話語（ex. 你要選哪一個方向、你應該怎麼處理 XX 組員）</li>
+            <li>求神親自動工，而不是我們來解決問題</li>
+            <li>最後以「奉耶穌的名禱告，阿們」結束</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 道別 -->
+    <div class="topic-block">
+      <div class="topic-header">道別與祝福</div>
+      <div class="topic-body">
+        <div class="script">「今天真的很開心和你聊！你說的這些我都會記下來。如果你同意的話我也會跟區長分享。」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 紀錄 -->
+  <div class="section">
+    <div class="section-label">紀錄</div>
+    <div class="card">
+      <p>通話結束後，請在<strong>預約系統的 Google Sheet</strong>補記以下欄位，幫助團隊跟進每位組長的狀況。</p>
+      <a class="link-btn" href="https://docs.google.com/spreadsheets/d/1hSJ6siI9c5flfAKlxEJ0S38C57t-gLw_WQ-A8d5K8mc/edit?gid=1294683053#gid=1294683053" target="_blank">
+        <svg class="ql-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        開啟 1-on-1 紀錄 Sheet
+      </a>
+      <div class="record-wrap">
+        <table class="record-table">
+          <thead>
+            <tr><th>欄位</th><th>說明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>負責服事夥伴</td><td>哪一位 staff 和他通話</td></tr>
+            <tr><td>小組現況摘要</td><td>1-2 句：人數、出席狀況、整體氛圍</td></tr>
+            <tr><td>組長個人狀態</td><td>1-3 個詞：「穩定」「疲倦」「充滿動力」「家庭壓力」等</td></tr>
+            <tr><td>主要挑戰</td><td>組長提到的最核心的一個困難</td></tr>
+            <tr><td>期望的資源 / 支持</td><td>他希望得到什麼幫助</td></tr>
+            <tr><td>是否需要轉介牧者</td><td>是 / 否</td></tr>
+            <tr><td>下一步行動</td><td>你打算做什麼後續：發資源、再跟進、轉介</td></tr>
+            <tr><td>下一次聯繫時間</td><td>預計什麼時候再跟進（如果有的話）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 後續行動 -->
+  <div class="section">
+    <div class="section-label">後續行動</div>
+
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-title"><span class="card-dot"></span>何時需要轉介牧者</div>
+      <p style="font-size:14px;margin-bottom:10px;">以下狀況，請在通話後<strong>當天</strong>告知 James：</p>
+      <ul class="dot-list">
+        <li>組長透露個人或家庭的明顯危機</li>
+        <li>組長對帶領小組感到嚴重灰心，考慮停下來</li>
+        <li>小組內有需要牧者介入的衝突或困難</li>
+        <li>任何你覺得「超過我能回應的」狀況</li>
+      </ul>
+      <div class="alert">不確定要不要轉介，就轉介。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="card-dot"></span>何時主動再跟進</div>
+      <div class="followup-row">
+        <div class="followup-trigger">組長說到一個困難，但通話時沒有完全解決</div>
+        <span class="followup-when">兩週內</span>
+      </div>
+      <div class="followup-row">
+        <div class="followup-trigger">通話中承諾提供某項資源</div>
+        <span class="followup-when">一週內</span>
+      </div>
+      <div class="followup-row">
+        <div class="followup-trigger">組長語氣讓你擔心，但沒有明說</div>
+        <span class="followup-when">一週內</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  The Hope Online Campus &nbsp;·&nbsp; 小組長 1-on-1 關懷 Play Book
+</div>
+
+</body>
+</html>
