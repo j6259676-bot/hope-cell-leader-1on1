@@ -84,44 +84,15 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ── SUBTAB NAV ── */
-  .subtab-wrap {
-    position: sticky;
-    top: var(--tabnav-h);
-    z-index: 90;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  }
-  .subtab-nav {
+  /* ── QUICK LINKS BAR ── */
+  .quick-links {
+    background: #16222A;
+    padding: 11px 20px;
     display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 0 12px;
-    max-width: 680px;
-    margin: 0 auto;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  .subtab-nav::-webkit-scrollbar { display: none; }
-  .subtab-btn {
-    flex-shrink: 0;
-    padding: 11px 14px;
-    background: none;
-    border: none;
-    border-bottom: 2.5px solid transparent;
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: color 0.15s, border-color 0.15s;
-    font-family: inherit;
-    line-height: 1;
-  }
-  .subtab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-  .subtab-btn:hover:not(.active) { color: var(--text); }
-  .subtab-panel { display: none; }
-  .subtab-panel.active { display: block; }
 
   /* ── FLOW BAR ── */
   .flow-bar {
@@ -476,7 +447,6 @@
   @media (max-width: 480px) {
     .header h1 { font-size: 22px; }
     .tab-btn { padding: 12px 14px; font-size: 12px; }
-    .subtab-btn { padding: 10px 12px; font-size: 12px; }
     .resource-grid { grid-template-columns: 1fr; }
     .followup-row { flex-wrap: wrap; }
   }
@@ -491,14 +461,29 @@
   <p>服事夥伴 Play Book &nbsp;·&nbsp; 適用對象：線上分部全職服事夥伴</p>
 </div>
 
+<!-- ── QUICK LINKS ── -->
+<div class="quick-links">
+  <a class="ql-btn" href="https://script.google.com/macros/s/AKfycbz05UT8nnsA3IaivUeMgW2Kxpso2L29VFngJHC7SROZzjAZTbhi2b5UqkE9TuFdolSq/exec" target="_blank">
+    <svg class="ql-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    預約系統
+  </a>
+  <a class="ql-btn" href="https://script.google.com/macros/s/AKfycbzN-0YxnY8VlmcOXvnBNMeF6hXdtn_kr-Sz2PrGRoB8AkZebsxASKaYlJ2v3lBLPJa9/exec" target="_blank">
+    <svg class="ql-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    小組查詢系統
+  </a>
+  <a class="ql-btn" href="https://docs.google.com/spreadsheets/d/1hSJ6siI9c5flfAKlxEJ0S38C57t-gLw_WQ-A8d5K8mc/edit?gid=1294683053#gid=1294683053" target="_blank">
+    <svg class="ql-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    1-on-1 紀錄 Sheet
+  </a>
+</div>
+
 <!-- ── TAB NAV ── -->
 <nav class="tab-nav" id="mainTabNav">
   <button class="tab-btn active" data-tab="core">服事核心</button>
   <button class="tab-btn" data-tab="booking">預約系統</button>
   <button class="tab-btn" data-tab="prep">通話前準備</button>
   <button class="tab-btn" data-tab="flow">對話流程</button>
-  <button class="tab-btn" data-tab="record">紀錄</button>
-  <button class="tab-btn" data-tab="followup">後續行動</button>
+  <button class="tab-btn" data-tab="wrap">紀錄 · 後續</button>
 </nav>
 
 <!-- ══════════════════════════════════════════════
@@ -705,189 +690,155 @@
      PANEL: 對話流程
 ══════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-flow">
-
-  <div class="subtab-wrap">
-    <div class="subtab-nav" id="subtabNav">
-      <button class="subtab-btn active" data-subtab="opening">開場</button>
-      <button class="subtab-btn" data-subtab="topic1">小組現況</button>
-      <button class="subtab-btn" data-subtab="topic2">個人狀態</button>
-      <button class="subtab-btn" data-subtab="topic3">牧養挑戰</button>
-      <button class="subtab-btn" data-subtab="topic4">資源裝備</button>
-      <button class="subtab-btn" data-subtab="prayer">禱告</button>
-      <button class="subtab-btn" data-subtab="closing">道別</button>
-    </div>
-  </div>
-
   <div class="container">
 
-    <!-- 開場 -->
-    <div class="subtab-panel active" id="subtab-opening">
-      <div class="topic-block">
-        <div class="topic-header">開場與通話目的</div>
-        <div class="topic-body">
-          <div class="script">「[組長名字] 你好！我是 The Hope 線上分部的 [你的名字]。很高興終於能和你聊聊！這次約你，主要是想多了解你現在帶領小組的狀況，也想聽聽你這段時間的感受——就是一個輕鬆的對話，沒有什麼標準答案。你現在方便開始嗎？」</div>
-          <div class="tip-box">
-            <div class="tip-label">關鍵提醒</div>
-            <ul>
-              <li>語氣要像朋友打電話，不要像 HR 面談</li>
-              <li>主動讓組長知道「這不是考核」，降低防衛心</li>
-              <li>不要急著進主題，先讓對方適應通話節奏（可以先問「你現在在哪裡打電話呢？」之類的暖場）</li>
-            </ul>
+    <div class="topic-block" style="margin-bottom:14px;">
+      <div class="topic-header">開場與通話目的</div>
+      <div class="topic-body">
+        <div class="script">「[組長名字] 你好！我是 The Hope 線上分部的 [你的名字]。很高興終於能和你聊聊！這次約你，主要是想多了解你現在帶領小組的狀況，也想聽聽你這段時間的感受——就是一個輕鬆的對話，沒有什麼標準答案。你現在方便開始嗎？」</div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>語氣要像朋友打電話，不要像 HR 面談</li>
+            <li>主動讓組長知道「這不是考核」，降低防衛心</li>
+            <li>不要急著進主題，先讓對方適應通話節奏（可以先問「你現在在哪裡打電話呢？」之類的暖場）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-block" style="margin-bottom:14px;">
+      <div class="topic-header">
+        <span class="topic-badge">主題一</span>小組現況
+      </div>
+      <div class="topic-body">
+        <div class="script">「先聊聊你的小組——現在幾個人？最近大家狀態怎麼樣？」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「這段時間出席的穩定嗎？有沒有誰比較少出現？」</li>
+            <li>「整體感覺，這個小組目前的氛圍是什麼樣子？」</li>
+            <li>「有沒有新朋友最近加入，或是有人比較遊離的？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>如果組長說「出席很不穩定」或「有人一直請假」，不要急著給解方</li>
+            <li>先問：「你自己對這件事有什麼感受？」讓他先說完</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-block" style="margin-bottom:14px;">
+      <div class="topic-header">
+        <span class="topic-badge">主題二</span>組長個人狀態
+      </div>
+      <div class="topic-body">
+        <div class="script">「聊完小組，我也想了解你自己——這段時間帶領下來，你的狀態怎麼樣？」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「有沒有哪段時間特別累，或是特別有動力？」</li>
+            <li>「你自己跟神的關係，這陣子感覺如何？」</li>
+            <li>「除了小組，生活其他面向（工作、家庭）最近怎麼了？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>組長可能說「還好、還不錯」，不要就此帶過</li>
+            <li>可以溫柔地追問：「『還好』是指哪個方向的還好？」讓他能更具體說出來</li>
+            <li>如果他透露出明顯的疲憊或困難，要認真停下來回應，不要趕時間跳到下一個主題</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-block" style="margin-bottom:14px;">
+      <div class="topic-header">
+        <span class="topic-badge">主題三</span>牧養挑戰
+      </div>
+      <div class="topic-body">
+        <div class="script">「你之前有提到 [從 4 題答案裡拿到的內容]，我想多聽你說說——那個情況現在怎麼樣了？」</div>
+        <p class="script-note">如果 4 題答案裡沒有明確挑戰，改用：</p>
+        <div class="script">「帶領小組這件事，有沒有什麼是你覺得特別難的？」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「這個挑戰你一個人面對，還是有其他人一起承擔？」</li>
+            <li>「你有沒有試過什麼方法？效果怎麼樣？」</li>
+            <li>「如果有一樣東西可以改變，你希望是什麼？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>組長分享挑戰時，第一個反應很重要——先說「謝謝你告訴我這個」或「我聽到了，這真的不容易」</li>
+            <li>讓他感受到被理解，再說你的想法</li>
+            <li>如果他談到難帶的組員，不要進入「你應該這樣處理」的模式；先問：「你自己對這個人有什麼感受？」</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-block" style="margin-bottom:14px;">
+      <div class="topic-header">
+        <span class="topic-badge">主題四</span>下一步資源 / 裝備
+      </div>
+      <div class="topic-body">
+        <div class="script">「聽你說了這麼多，我想問問——現在有什麼是你覺得自己需要，或是教會可以幫助到你的？不管是課程、連結、還是某種支持都可以說。」</div>
+        <div class="deep-q">
+          <div class="deep-q-label">深入問題（視情況選用）</div>
+          <ul>
+            <li>「有沒有哪個主題是你這段時間特別想學或想深化的？」</li>
+            <li>「你希望跟其他小組長有更多的連結嗎？」</li>
+            <li>「如果可以的話，你希望牧者在這個階段幫你做什麼？」</li>
+          </ul>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">關鍵提醒</div>
+          <ul>
+            <li>不要一次給太多選項，讓組長感到混亂或有壓力</li>
+            <li>根據他說的內容，提供最適合的一個方向</li>
+            <li>資源不需要馬上給答案，可以說「我記下來，之後確認了再跟你說」</li>
+          </ul>
+        </div>
+        <div style="margin-top:16px;">
+          <div class="deep-q-label">常見可提供的資源</div>
+          <div class="resource-grid">
+            <div class="resource-pill">小組長聚集</div>
+            <div class="resource-pill">牧養大哉問</div>
+            <div class="resource-pill">門徒的旅程課程</div>
+            <div class="resource-pill">James / 牧者一對一</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 主題一 -->
-    <div class="subtab-panel" id="subtab-topic1">
-      <div class="topic-block">
-        <div class="topic-header">
-          <span class="topic-badge">主題一</span>小組現況
-        </div>
-        <div class="topic-body">
-          <div class="script">「先聊聊你的小組——現在幾個人？最近大家狀態怎麼樣？」</div>
-          <div class="deep-q">
-            <div class="deep-q-label">深入問題（視情況選用）</div>
-            <ul>
-              <li>「這段時間出席的穩定嗎？有沒有誰比較少出現？」</li>
-              <li>「整體感覺，這個小組目前的氛圍是什麼樣子？」</li>
-              <li>「有沒有新朋友最近加入，或是有人比較遊離的？」</li>
-            </ul>
-          </div>
-          <div class="tip-box">
-            <div class="tip-label">關鍵提醒</div>
-            <ul>
-              <li>如果組長說「出席很不穩定」或「有人一直請假」，不要急著給解方</li>
-              <li>先問：「你自己對這件事有什麼感受？」讓他先說完</li>
-            </ul>
-          </div>
+    <div class="topic-block" style="margin-bottom:14px;">
+      <div class="topic-header">禱告</div>
+      <div class="topic-body">
+        <div class="script">「分享了這麼多，謝謝你！在結束前，我想為你禱告——你現在最想讓我為你禱告什麼？」</div>
+        <p style="font-size:13.5px;margin:10px 0 4px;">如果對方願意分享，可以記錄下來，確保禱告有針對性。</p>
+        <div class="tip-box">
+          <div class="tip-label">禱告時的重點</div>
+          <ul>
+            <li>先感謝神，為組長願意帶領這個小組</li>
+            <li>為他說的挑戰和需要代禱，具體說出他分享的內容</li>
+            <li>禱告內容要以「安慰、造就、勸勉」為主，不給指示性的話語（ex. 你要選哪一個方向、你應該怎麼處理 XX 組員）</li>
+            <li>求神親自動工，而不是我們來解決問題</li>
+            <li>最後以「奉耶穌的名禱告，阿們」結束</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <!-- 主題二 -->
-    <div class="subtab-panel" id="subtab-topic2">
-      <div class="topic-block">
-        <div class="topic-header">
-          <span class="topic-badge">主題二</span>組長個人狀態
-        </div>
-        <div class="topic-body">
-          <div class="script">「聊完小組，我也想了解你自己——這段時間帶領下來，你的狀態怎麼樣？」</div>
-          <div class="deep-q">
-            <div class="deep-q-label">深入問題（視情況選用）</div>
-            <ul>
-              <li>「有沒有哪段時間特別累，或是特別有動力？」</li>
-              <li>「你自己跟神的關係，這陣子感覺如何？」</li>
-              <li>「除了小組，生活其他面向（工作、家庭）最近怎麼了？」</li>
-            </ul>
-          </div>
-          <div class="tip-box">
-            <div class="tip-label">關鍵提醒</div>
-            <ul>
-              <li>組長可能說「還好、還不錯」，不要就此帶過</li>
-              <li>可以溫柔地追問：「『還好』是指哪個方向的還好？」讓他能更具體說出來</li>
-              <li>如果他透露出明顯的疲憊或困難，要認真停下來回應，不要趕時間跳到下一個主題</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 主題三 -->
-    <div class="subtab-panel" id="subtab-topic3">
-      <div class="topic-block">
-        <div class="topic-header">
-          <span class="topic-badge">主題三</span>牧養挑戰
-        </div>
-        <div class="topic-body">
-          <div class="script">「你之前有提到 [從 4 題答案裡拿到的內容]，我想多聽你說說——那個情況現在怎麼樣了？」</div>
-          <p class="script-note">如果 4 題答案裡沒有明確挑戰，改用：</p>
-          <div class="script">「帶領小組這件事，有沒有什麼是你覺得特別難的？」</div>
-          <div class="deep-q">
-            <div class="deep-q-label">深入問題（視情況選用）</div>
-            <ul>
-              <li>「這個挑戰你一個人面對，還是有其他人一起承擔？」</li>
-              <li>「你有沒有試過什麼方法？效果怎麼樣？」</li>
-              <li>「如果有一樣東西可以改變，你希望是什麼？」</li>
-            </ul>
-          </div>
-          <div class="tip-box">
-            <div class="tip-label">關鍵提醒</div>
-            <ul>
-              <li>組長分享挑戰時，第一個反應很重要——先說「謝謝你告訴我這個」或「我聽到了，這真的不容易」</li>
-              <li>讓他感受到被理解，再說你的想法</li>
-              <li>如果他談到難帶的組員，不要進入「你應該這樣處理」的模式；先問：「你自己對這個人有什麼感受？」</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 主題四 -->
-    <div class="subtab-panel" id="subtab-topic4">
-      <div class="topic-block">
-        <div class="topic-header">
-          <span class="topic-badge">主題四</span>下一步資源 / 裝備
-        </div>
-        <div class="topic-body">
-          <div class="script">「聽你說了這麼多，我想問問——現在有什麼是你覺得自己需要，或是教會可以幫助到你的？不管是課程、連結、還是某種支持都可以說。」</div>
-          <div class="deep-q">
-            <div class="deep-q-label">深入問題（視情況選用）</div>
-            <ul>
-              <li>「有沒有哪個主題是你這段時間特別想學或想深化的？」</li>
-              <li>「你希望跟其他小組長有更多的連結嗎？」</li>
-              <li>「如果可以的話，你希望牧者在這個階段幫你做什麼？」</li>
-            </ul>
-          </div>
-          <div class="tip-box">
-            <div class="tip-label">關鍵提醒</div>
-            <ul>
-              <li>不要一次給太多選項，讓組長感到混亂或有壓力</li>
-              <li>根據他說的內容，提供最適合的一個方向</li>
-              <li>資源不需要馬上給答案，可以說「我記下來，之後確認了再跟你說」</li>
-            </ul>
-          </div>
-          <div style="margin-top:16px;">
-            <div class="deep-q-label">常見可提供的資源</div>
-            <div class="resource-grid">
-              <div class="resource-pill">小組長聚集</div>
-              <div class="resource-pill">牧養大哉問</div>
-              <div class="resource-pill">門徒的旅程課程</div>
-              <div class="resource-pill">James / 牧者一對一</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 禱告 -->
-    <div class="subtab-panel" id="subtab-prayer">
-      <div class="topic-block">
-        <div class="topic-header">禱告</div>
-        <div class="topic-body">
-          <div class="script">「分享了這麼多，謝謝你！在結束前，我想為你禱告——你現在最想讓我為你禱告什麼？」</div>
-          <p style="font-size:13.5px;margin:10px 0 4px;">如果對方願意分享，可以記錄下來，確保禱告有針對性。</p>
-          <div class="tip-box">
-            <div class="tip-label">禱告時的重點</div>
-            <ul>
-              <li>先感謝神，為組長願意帶領這個小組</li>
-              <li>為他說的挑戰和需要代禱，具體說出他分享的內容</li>
-              <li>禱告內容要以「安慰、造就、勸勉」為主，不給指示性的話語（ex. 你要選哪一個方向、你應該怎麼處理 XX 組員）</li>
-              <li>求神親自動工，而不是我們來解決問題</li>
-              <li>最後以「奉耶穌的名禱告，阿們」結束</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 道別 -->
-    <div class="subtab-panel" id="subtab-closing">
-      <div class="topic-block">
-        <div class="topic-header">道別與祝福</div>
-        <div class="topic-body">
-          <div class="script">「今天真的很開心和你聊！你說的這些我都會記下來。如果你同意的話我也會跟區長分享。」</div>
-        </div>
+    <div class="topic-block">
+      <div class="topic-header">道別與祝福</div>
+      <div class="topic-body">
+        <div class="script">「今天真的很開心和你聊！你說的這些我都會記下來。如果你同意的話我也會跟區長分享。」</div>
       </div>
     </div>
 
@@ -895,10 +846,11 @@
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PANEL: 紀錄
+     PANEL: 紀錄 · 後續
 ══════════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-record">
+<div class="tab-panel" id="panel-wrap">
   <div class="container">
+
     <div class="section">
       <div class="section-label">紀錄</div>
       <div class="card">
@@ -926,14 +878,7 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════════════════
-     PANEL: 後續行動
-══════════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-followup">
-  <div class="container">
     <div class="section">
       <div class="section-label">後續行動</div>
 
@@ -965,6 +910,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -990,18 +936,6 @@
     });
   });
 
-  // Sub-tabs (對話流程)
-  document.querySelectorAll('.subtab-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var subtab = this.dataset.subtab;
-      document.querySelectorAll('.subtab-btn').forEach(function(b) { b.classList.remove('active'); });
-      document.querySelectorAll('.subtab-panel').forEach(function(p) { p.classList.remove('active'); });
-      this.classList.add('active');
-      document.getElementById('subtab-' + subtab).classList.add('active');
-      // Scroll to just below tab nav + subtab nav
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    });
-  });
 </script>
 
 </body>
